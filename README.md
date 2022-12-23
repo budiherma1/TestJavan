@@ -1,5 +1,5 @@
 - Make sure you have docker on your local machine
-this app contain 2 service: 
+- This app contain 2 service: 
   - test_javan_be (DB included)
   - test_javan_fe
 

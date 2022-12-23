@@ -1,0 +1,14 @@
+{{--  <div class="form-check form-check-sm form-check-custom form-check-solid">
+	<input class="form-check-input" type="checkbox" value="1" {{data == 1 ? "checked='checked'" : ''}} disabled/>
+</div>  --}}
+
+<div class="form-check form-check-custom form-check-solid">
+    <input data-column="{{ name }}" data-form-type="select" id="{{ name }}_filter" name="{{ name }}_filter" class="ave-form-filter-all form-check-input" type="checkbox" value="1" />
+	{{--  <label class="form-check-label" for="flexCheckDisabled">
+        {{ title }}
+    </label>  --}}
+	{{--  <label class="{{ required ? 'required' : ''  }} form-label fs-6 fw-semibold">{{title}}:</label>  --}}
+	<label class="{{ required ? 'required' : ''  }} form-check-label" for="{{ name }}_filter">
+        {{title}}
+    </label>
+</div>

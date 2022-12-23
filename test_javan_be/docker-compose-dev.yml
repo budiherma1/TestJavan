@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+
+  # Nodejs
+  javan_be:
+    platform: linux/amd64
+    container_name: javan_be
+    env_file: .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      javan_network:
+    restart: unless-stopped
+    depends_on:
+      - javan_db
+    volumes:
+      - .:/usr/apps/javan_be
+      - /usr/apps/javan_be/node_modules
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+
+  javan_db:
+    image: mysql:5.7.40
+    restart: always
+    container_name: javan_db
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: "${MYSQL_USER}"
+      # You can use whatever password you like
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    networks:
+      - javan_network
+    command: mysqld --sql_mode="" --character-set-server=utf8 --collation-server=utf8_slovenian_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - "${DB_PORT_HOST}:3306"
+    # expose:
+      # Opens port 3306 on the container
+      # - '3306'
+      # Where our data will be persisted
+    volumes:
+      - javan_db_vol:/var/lib/mysql
+
+#Docker Networks
+networks:
+  javan_network:
+    name: javan_network
+    driver: bridge
+
+volumes:
+  javan_db_vol:

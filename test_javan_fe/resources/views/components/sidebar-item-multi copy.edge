@@ -1,0 +1,38 @@
+<!--begin:Menu item-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ title == menu ? 'hover show' : '' }}">
+	<!--begin:Menu link-->
+	<span class="menu-link">
+		<span class="menu-icon">
+			<!--begin::Svg Icon | path: icons/duotune/layouts/lay008.svg-->
+			<span class="svg-icon svg-icon-2">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path opacity="0.3" d="{{ iconSvg1 }}" fill="currentColor" />
+					<path d="{{ iconSvg2 }}" fill="currentColor" />
+				</svg>
+			</span>
+			<!--end::Svg Icon-->
+		</span>
+		<span class="menu-title">{{ title }}</span>
+		<span class="menu-arrow"></span>
+	</span>
+	<!--end:Menu link-->
+	<!--begin:Menu sub-->
+	<div class="menu-sub menu-sub-accordion">
+		@each(item in subItem)
+		<!--begin:Menu item-->
+		<div class="menu-item">
+			<!--begin:Menu link-->
+			<a class="menu-link {{ item.title == titleHeader ? 'active' : '' }}" href="{{ item.url }}">
+				<span class="menu-bullet">
+					<span class="bullet bullet-dot"></span>
+				</span>
+				<span class="menu-title">{{ item.title }}</span>
+			</a>
+			<!--end:Menu link-->
+		</div>
+		<!--end:Menu item-->
+		@end
+	</div>
+	<!--end:Menu sub-->
+</div>
+<!--end:Menu item-->

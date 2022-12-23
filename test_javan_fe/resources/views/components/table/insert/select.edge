@@ -1,0 +1,9 @@
+<!--begin::Input group-->
+	<label class="{{ required ? 'required' : ''  }} form-label fs-6 fw-semibold">{{title}}:</label>
+	<select data-column="{{ name }}" data-form-type="select" id="{{ name }}" name="{{ name }}_insert" class="ave-form-insert-all form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
+		<option></option>
+		@each(option in options)
+		<option value="{{ option.value }}">{{ option.name }}</option>
+		@end
+	</select>
+<!--end::Input group-->

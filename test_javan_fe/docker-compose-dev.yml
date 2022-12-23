@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+
+  # Nodejs
+
+  javan_fe:
+    platform: linux/amd64
+    container_name: javan_fe
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - javan_network
+    restart: unless-stopped
+    volumes:
+      - .:/usr/apps/javan_fe
+      - /usr/apps/javan_fe/node_modules
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+
+networks:
+  javan_network:
+    name: javan_network
+    driver: bridge
